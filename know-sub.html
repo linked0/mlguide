@@ -1,15 +1,16 @@
 <html>
 <body>
-  <a href="http://bit.ly/2EluV7n"> sites.txt </a><br>
-  <a href="http://goo.gl/B2Drsz"> gdrive 기술문서 </a><br>
-  <a href="http://bit.ly/2HKEsmS"> colab aplay </a><br>
-
 <pre>
 ### 1.command --> 1.2.vi --> 1.3.mac
 ### 2.project-management
 ### 3.blockchain
 ### 4.ml/colab/jupyter
 ### 5.cloud/docker
+### 6.python
+### 7.node.js --> 7.2.web
+### 8.android --> 8.2.ios
+### 9.java/c/go
+### 10.etc
 
 #########################################
 #########################################
@@ -380,6 +381,210 @@ PC를 껐다가 다시 켜는 것도 한 방법
 docker swarm leave --force        <-  현재 PC가 Leader가 아닐때 이걸로 leave.
 docker swarm leave --force     <- 마지막 leader에서 leave.
 
+#########################################
+#########################################
+#### 6.python
+#########################################
+
+###### Python Virtual Env
+conda install -n yourenvname [package]
+conda create -n py3conda python=3.6 anaconda ⇐ 이게 anaconda를 관련 패키지를 다 설치해준다.
+conda create -n autobuild python=3.6 ⇐ 이것만 해줘도 문제없다.
+source activate py3conda
+virtualenv를 사용하는 이유는 패키지 환경을 유지하기 위해서이다.
+    * pip freeze > requirements.txt
+    * pip install -r requirements.txt
+ /Users/user/anaconda/lib/python2.7/site-packages
+info --envs ⇐ env 리스팅
+conda env remove --name myenv
+
+
+* 이슈
+현재 py36에서는 잘되는데, kaggle36에서는 segmentation fault발생(conda create -n yourenvname python=x.x anaconda로 생성된 것임), 170904
+
+* 관련 명령어
+conda env list
+
+
+# pip upgrade & 버전 지정
+sudo pip install --upgrade numpy
+sudo conda install pandas=0.19.2
+
+# 기타
+lim x^2/(1-cos(x)) as x -> 0.001+
+
+# ipython notebook
+%matplotlib inline
+%load_ext autoreload
+%autoreload 2
+%config InlineBackend.figure_format = 'retina'
+
+plt.show()를 실행해야 반영됨 
+
+# ipython
+%run ./my_script.py
+Pycharm
+
+# 인터프리터 세팅
+Go to File > Default Settings
+In left sidebar, click Default Project > Project Interpreter
+At bottom of window, click + to install or - to uninstall.
+
+# import시 참조 오류 나는 것
+- app_ml 폴더에서 오른쪽 버튼
+- Mark Directory AS → Source Root
+
+* split vertically 세팅 
+
+#### Error 1
+[QNSApplication _setup:]: unrecognized selector sent to instance 0x7fc6cc9d16a0
+==> pylab, matplotlib.pyplot, or matplotlib.backends가 임포트 되기 전에 호출되면 됨.
+import matplotlib
+matplotlib.use('Qt5Agg')
+==> Qt5Agg 말고도 다음과 같이 여러개의 설정값이 있음.
+['GTK', 'GTKAgg', 'GTKCairo', 'MacOSX', 'Qt4Agg', 'Qt5Agg', 'TkAgg', 'WX', 'WXAgg', 'GTK3Cairo', 'GTK3Agg', 'WebAgg', 'nbAgg', 'agg', 'cairo', 'gdk', 'pdf', 'pgf', 'ps', 'svg', 'template']
+
+
+#########################################
+#########################################
+#### 7.node
+#########################################
+
+#########################################
+#########################################
+#### 7.2.web ###
+#########################################
+
+
+#########################################
+#########################################
+#### 8.android
+#########################################
+
+
+###### Android-SDK 빌드 에러
+
+lintOptions{
+    disable "ResourceType"
+}
+
+WifiManager manager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+ 
+NullPointerException (no error message)
+Here is a screen shot of my android studio:
+Help me regarding this what to do now.
+
+⇒ 
+
+In the root folder of your project, delete the .gradle folder.
+C:\Users\VipinSaini\AndroidStudioProjects\MyProject\.gradle
+then reboot Android Studio
+
+###### Android
+JDK Home
+~ jay$ /usr/libexec/java_home
+/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+
+###### ADT & 안드로이드 SDK (old version)
+ADT: https://dl-ssl.google.com/android/eclipse/
+
+https://dl.google.com/android/installer_r24.4.1-windows.exe
+https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
+https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
+https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+
+old version(windows)
+https://android-studio.en.uptodown.com/windows/old
+
+Adnroid Build Tools: 25.0.0 버전이 가정 적당함.
+
+###### Android 로그(logcat, Logcat)
+아래 정규표현식 복사시에 문자열 끝에 스페이스가 붙으면 아무것도 안나옴.
+# 아래 로그가 최종 후보
+^((?!(?:ScanRecord|BluetoothAdapter|Latitude|onReceive|ConnectivityService|NetworkController|BtGatt|BluetoothUtils|PRESENCE_ALERT|SamsungAlarmManager|NetworkIdentity|CompatibilityInfo|audio_|CalcNPosition|scanlist|Battery|PowerUI|BluetoothEventManager|DevicePolicyManagerService|OcrModelUpStIntentOp|ProcessStatsService|NetstatsParser|ViewRootImpl|TextClock|WeatherWidget)).)*$
+
+^((?!(?:NetworkIdentity)).)*$
+
+^((?!(?:ScanRecord|BluetoothAdapter|Latitude|onReceive|ConnectivityService|NetworkController|BtGatt|BluetoothUtils|PRESENCE_ALERT|SamsungAlarmManager|NetworkIdentity|CompatibilityInfo|audio_|CalcNPosition|scanlist|Battery|PowerUI|BluetoothEventManager)).)*$
+
+
+
+(com.dbs.mcare.severance.dev1) [IDEVW]\/(?!(ScanRecord|kalman|PnTSample|PnTBleService: Latitude|BluetoothAdapter|BluetoothLeScanner)).+
+
+
+# GigaGenie 번역앱 참고
+* Config.java
+public static final String TAG = "GigaTrans-";
+
+* SimpleActivity.java
+private final static String TAG = Config.TAG + "Main";
+Log.d(TAG, "onResume");
+
+######
+# 기존 것
+public class DLog {
+   private static final boolean isLog = true;
+   private static final boolean isMethodInfo = false;
+  
+   public static final void e(String TAG, String msg) {
+       if (msg == null) msg = "null";
+       if (isLog) {
+           String message = (isMethodInfo) ? ("[" + methodInfo() + "] " + msg) : msg;
+           Log.e(TAG, message);
+       }
+   }
+
+   public static final void d(String TAG, String msg) {
+       if (msg == null) msg = "null";
+       if (isLog) {
+           String message = (isMethodInfo) ? ("[" + methodInfo() + "] " + msg) : msg;
+           Log.d(TAG, message);
+       }
+   }
+
+   public static final void i(String TAG, String msg) {
+       if (msg == null) msg = "null";
+       if (isLog) {
+           String message = (isMethodInfo) ? ("[" + methodInfo() + "] " + msg) : msg;
+           Log.i(TAG, message);
+       }
+   }
+
+   public static final void v(String TAG, String msg) {
+       if (isLog) {
+           String message = (isMethodInfo) ? ("[" + methodInfo() + "] " + msg) : msg;
+           Log.v(TAG, message);
+       }
+   }
+
+   public static final void w(String TAG, String msg) {
+       if (msg == null) msg = "null";
+       if (isLog) {
+           String message = (isMethodInfo) ? ("[" + methodInfo() + "] " + msg) : msg;
+           Log.d(TAG, message);
+       }
+   }
+
+   private static String methodInfo() {
+       StackTraceElement ste = Thread.currentThread().getStackTrace()[4];
+       StringBuilder sb = new StringBuilder();
+       sb.append(ste.getFileName());
+       sb.append("/");
+       sb.append(ste.getMethodName());
+       return sb.toString();
+
+   }
+}
+
+###### 토스트 (Toast)
+public void ShowToast(String str)
+{
+  Log.i("hanwha_sample", str);
+  if(mToast != null)
+     mToast.cancel();
+
+  mToast = Toast.makeText(this, str, Toast.LENGTH_SHORT);
   mToast.show();
 }
 
@@ -395,6 +600,31 @@ allprojects {
 
 안드로이드 스튜디오 윈도우
 - 드라이버를 깔아야 LogCat에서 볼 수 있음.
+
+AS 3.0 “Plase select Android SDK”
+https://stackoverflow.com/questions/34353220/android-studio-please-select-android-sdk
+
+Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+Assistant Editor: Opt-Cmd-Ret
+
+# LogCat화면 
+- OSD_(FILE|PCS)
+
+#########################################
+#########################################
+#### 8.2.ios
+#########################################
+iOS 로그
+NSLog(@">>>>>> %s - info:%@", __func__, userInfo);
+
+Error
+# ld: warning: Auto-Linking supplied '/Users/hyunjaelee/Library/Developer/Xcode/DerivedData/yonseisv-debkgertqwuhhjfiovglbavpebad/Build/Products/Debug-iphoneos/PnTBleMap.framework/PnTBleMap', framework linker option at /Users/hyunjaelee/Library/Developer/Xcode/DerivedData/yonseisv-debkgertqwuhhjfiovglbavpebad/Build/Products/Debug-iphoneos/PnTBleMap.framework/PnTBleMap is not a dylib
+
+=> This error is almost always produced by not having the binary linked to the library (In this case it would be the Crashlytics.framework):
+“Build Phases” 탭에서 Link the Framework 하면됨.
+
+pragma
 #pragma mark -
 #pragma mark UITableView Delegate
 
@@ -407,6 +637,164 @@ General 탭에서 Automatically manager singing를 uncheck하고, 새로운 Prov
 “Automatically manage sigining” 을 체크하고 Team을 Jimsun Lim(Personal Team)으로 세팅하면 Signing 섹션 상의 에러는 없어짐
 - 빌드시 Signing 관련 에러가 떨어졌으나, 클린빌드해서 문제가 해결됨
 
+#########################################
+#########################################
+### 9.java/c/go ###
+#########################################
+
+
+#########################################
+#########################################
+### 10.etc ###
+#########################################
+
+###### Violent Monkey
+YonseiSv
+// ==UserScript==
+// @name YonseiSv
+// @namespace https://wms-sev.iseverance.com
+// @grant none
+// ==/UserScript==
+$(".navbar").height(30);
+$(".navbar-branding").height(30);
+$(".nav").height(30);
+$(".dropdown").height(30);
+$(".dropdown-toggle").height(30);
+
+topBar = document.getElementById("topbar")
+topBar.style.padding = "0px"
+topBar.style.minHeight = "30px"
+
+var utilBtn = document.createElement("BUTTON");        // Create a <button> element
+var t = document.createTextNode("Clear");       // Create a text node
+utilBtn.appendChild(t);                                // Append the text to <button>
+utilBtn.addEventListener("click", function(){
+    pntmap.getObjectManager().findTag('node.beacon', function(marker) { marker.setLabelText(String(marker.getData().get('nodeName'))); } )
+});
+topBar.appendChild(utilBtn);  
+
+
+pntmap.on('vmarker.rightclick', function(evt) {
+alert('hello')
+};);
+
+##### Excel
+Sub KttCalcData()
+
+' 구간행 인덱스 검색
+For i = 1 To 1000
+    If Cells(i, 3).Value = sectPrepare Then
+        prepareIdx = i
+    ElseIf Cells(i, 3).Value = sectEnd Then
+        endIdx = i
+    ElseIf Mid(Cells(i, 3), 1, 7) = sectUrl1 Then
+        If httpIdx = 1 Then
+            url1Idx = i
+            httpIdx = httpIdx + 1
+        ElseIf httpIdx = 5 Then
+            img4Idx = i
+            httpIdx = httpIdx + 1
+        End If
+    ' 망셋업에 대한 정확한 데이터 산출
+    ElseIf Cells(i, 3).Value = sectNapChanged And napChangedIdx = 0 Then
+        napChangedIdx = i
+    ElseIf Cells(i, 3).Value = sectDnsStart And dnsStarIdx = 0 Then
+        dnsStarIdx = i
+    End If
+Next i
+
+Count = 0
+For i = 1 To calcEnd
+    If Cells(i, 3).Value = "ScreenAcquire:End" Then
+        Count = Count + 1
+        Cells(i, 3).Interior.Color = RGB(0, 255, 0)    ElseIf Cells(i, 3).Value = "ScreenRelease:End" Then
+        Count = Count + 1
+        Cells(i, 3).Interior.Color = cellColor
+    ElseIf Cells(i, 3).Value = "Performance(100K):Start" Then
+        prf100KIdx = i
+    ElseIf Cells(i, 3).Value = "File Access Total" Then
+        fileAccIdx = i
+    End If
+Next i
+
+' 배열 선언
+Dim urls(20)
+Index = 0
+For i = 1 To 1000
+    If Mid(Cells(i, 3), 1, 7) = "http://" Then
+        urls(Index) = Cells(i, 3)
+        Index = Index + 1
+    End If
+Next i
+
+End Sub
+
+
+* nxf1 속도 분석
+Sub Btn1_Click()
+startTime = Cells(1, 4)
+
+For i = 2 To 6000
+    time1 = Cells(i - 1, 4)
+    time2 = Cells(i, 4)
+    If Mid(time2, 1, 8) = "--Myriad" Then
+        Exit Sub
+    End If
+   
+    Cells(i, 2).Value = time2 - time1
+   
+    If Mid(Cells(i, 1), 1, 1) = "*" Then
+        Cells(i, 3).Value = time2 - startTime
+        startTime = time2
+    End If
+   
+Next i
+End Sub 
+Python
+- Tkinter was renamed to tkinter from Python 2 to 3
+
+#!/usr/bin/env python3 (for Mac) 
+#!/usr/bin/python2.4 (for Linux)
+ 
+import Tkinter
+
+top = Tkinter.Tk()
+label = Tkinter.Label(top, text = 'Hello World!')
+label.pack()
+Tkinter.mainloop()
+
+# Returns the Pearson correlation coefficient for p1 and p2
+def sim_pearson(prefs,p1,p2):
+  # Get the list of mutually rated items
+  si={}
+  for item in prefs[p1]: 
+    if item in prefs[p2]: si[item]=1
+
+  # if they are no ratings in common, return 0
+  if len(si)==0: return 0
+
+  # Sum calculations
+  n=len(si)
+  
+  # Sums of all the preferences
+  sum1=sum([prefs[p1][it] for it in si])
+  sum2=sum([prefs[p2][it] for it in si])
+  
+  # Sums of the squares
+  sum1Sq=sum([pow(prefs[p1][it],2) for it in si])
+  sum2Sq=sum([pow(prefs[p2][it],2) for it in si])
+  
+  # Sum of the products
+  pSum=sum([prefs[p1][it]*prefs[p2][it] for it in si])
+  
+  # Calculate r (Pearson score)
+  num=pSum-(sum1*sum2/n)
+  den=sqrt( (sum1Sq-pow(sum1,2)/n) * (sum2Sq-pow(sum2,2)/n) )
+  if den==0: return 0
+
+  r=num/den
+
+  return r
 </pre>
 </body>
 </html>
